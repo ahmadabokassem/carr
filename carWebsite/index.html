@@ -1,0 +1,2419 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173a2d">
+  <meta name="description" content="Explore ARBD rental cars and contact your preferred branch in Saudi Arabia.">
+  <title>ARBD — Your journey, your way</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/arbd-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #173a2d;
+      --primary-700: #102d25;
+      --primary-600: #1f483d;
+      --primary-100: #edf3ef;
+      --accent: #c7a76a;
+      --accent-strong: #b98f4f;
+      --sand: #f3ece2;
+      --paper: #f7f5f1;
+      --panel: #ffffff;
+      --panel-soft: #f4f2ee;
+      --ink: #1d2a24;
+      --muted: #68756e;
+      --line: #e6e2dc;
+      --shadow: 0 18px 40px rgba(19, 35, 29, .08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 30px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    html[lang="ar"] body { font-family: "Tajawal", sans-serif; }
+
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    [hidden] { display: none !important; }
+
+    img { max-width: 100%; }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    /* Header */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 40;
+      color: white;
+      background: linear-gradient(180deg, rgba(15, 27, 22, .7), rgba(15, 27, 22, 0));
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-width: 130px;
+      min-height: 48px;
+    }
+
+    .brand img {
+      display: block;
+      width: auto;
+      max-width: 150px;
+      height: 44px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    html[dir="rtl"] .brand img { object-position: right center; }
+
+    .brand-fallback {
+      color: white;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 700;
+      transition: color .18s ease;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-button {
+      min-height: 39px;
+      padding: 0 14px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 999px;
+      color: white;
+      background: rgba(255,255,255,.07);
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      transition: background .18s ease, border-color .18s ease;
+    }
+
+    .nav-button:hover {
+      border-color: rgba(255,255,255,.76);
+      background: rgba(255,255,255,.16);
+    }
+
+    .nav-book {
+      border-color: rgba(255,255,255,.08);
+      color: var(--primary);
+      background: #edf1ee;
+    }
+
+    .nav-book:hover {
+      background: white;
+    }
+
+    .currency-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .currency-option {
+      min-width: 42px;
+      min-height: 30px;
+      padding: 0 8px;
+      border: 0;
+      border-radius: 999px;
+      color: rgba(255,255,255,.8);
+      background: transparent;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .currency-option.active {
+      color: var(--primary);
+      background: #edf1ee;
+    }
+
+    .menu-button { display: none; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: min(760px, 86vh);
+      min-height: min(760px, 86svh);
+      overflow: hidden;
+      color: white;
+      background: #1a322c;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .7;
+      filter: saturate(0.9);
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      content: "";
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(11, 23, 19, .84), rgba(11, 23, 19, .54) 56%, rgba(11, 23, 19, .28)),
+        linear-gradient(0deg, rgba(11, 23, 19, .36), transparent 55%);
+    }
+
+    html[dir="rtl"] .hero::after {
+      background:
+        linear-gradient(270deg, rgba(11, 23, 19, .84), rgba(11, 23, 19, .54) 56%, rgba(11, 23, 19, .28)),
+        linear-gradient(0deg, rgba(11, 23, 19, .36), transparent 55%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, calc(100% - 48px));
+      margin: 54px auto 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: #e8dfd2;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 26px;
+      height: 2px;
+      content: "";
+      background: #e8dfd2;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(50px, 6.8vw, 86px);
+      font-weight: 800;
+      line-height: .99;
+      letter-spacing: -3.8px;
+      text-wrap: balance;
+    }
+
+    html[lang="ar"] h1 {
+      max-width: 930px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 540px;
+      margin: 22px 0 28px;
+      color: rgba(255,255,255,.84);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 12px;
+      color: white;
+      background: var(--primary);
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(20, 61, 47, .22);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--primary-600);
+      box-shadow: 0 14px 22px rgba(20, 61, 47, .18);
+    }
+
+    .button-hero {
+      color: var(--primary);
+      background: #edf4ee;
+      box-shadow: 0 10px 24px rgba(17, 63, 49, .18);
+    }
+
+    .button-hero:hover {
+      background: white;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,.5);
+      transition: color .18s ease, border-color .18s ease;
+    }
+
+    .hero-link:hover {
+      color: #e6d7b8;
+      border-color: #e6d7b8;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      color: rgba(255,255,255,.76);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hero-note-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #e6d7b8;
+      box-shadow: 0 0 0 5px rgba(230,215,184,.15);
+    }
+
+    /* Search */
+    .search-section {
+      position: relative;
+      z-index: 3;
+      margin-top: -38px;
+    }
+
+    .search-panel {
+      display: grid;
+      grid-template-columns: minmax(180px,1.2fr) minmax(120px,.7fr) minmax(150px,.8fr) minmax(170px,1fr) auto;
+      align-items: end;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid rgba(19, 42, 33, .05);
+      border-radius: 18px;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 20px 50px rgba(16, 31, 26, .09);
+      backdrop-filter: blur(6px);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #617069;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      outline: none;
+      color: var(--ink);
+      background: var(--panel-soft);
+    }
+
+    .field input:focus, .field select:focus {
+      border-color: rgba(20, 61, 47, .5);
+      box-shadow: 0 0 0 3px rgba(20, 61, 47, .08);
+    }
+
+    .search-panel > .button {
+      min-height: 48px;
+      padding-inline: 16px;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    /* Shared */
+    .section { padding: 88px 0; }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1.4px;
+      text-wrap: balance;
+    }
+
+    html[lang="ar"] h2 { letter-spacing: 0; }
+
+    .intro {
+      max-width: 620px;
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* Fleet */
+    .fleet-section { padding-top: 70px; }
+
+    .fleet-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .fleet-header .fleet-copy { max-width: 680px; }
+
+    .fleet-count {
+      flex: 0 0 auto;
+      padding-bottom: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .brand-filter-wrap {
+      margin-top: 26px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #cad4ce transparent;
+    }
+
+    .brand-filters {
+      display: flex;
+      align-items: stretch;
+      gap: 9px;
+      min-width: max-content;
+      padding: 0 0 12px;
+    }
+
+    .brand-filter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-width: 112px;
+      min-height: 56px;
+      padding: 8px 13px;
+      border: 1px solid #ece4da;
+      border-radius: 12px;
+      color: #52615d;
+      background: white;
+      transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .brand-filter:hover {
+      transform: translateY(-1px);
+      border-color: #d5c4a0;
+    }
+
+    .brand-filter.active {
+      border-color: var(--primary);
+      color: white;
+      background: var(--primary);
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      color: currentColor;
+    }
+
+    .brand-mark svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .brand-filter-label {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .brand-filter-all {
+      min-width: 70px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .car-card {
+      overflow: hidden;
+      border: 1px solid #e8e2da;
+      border-radius: 18px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 4px 18px rgba(17, 36, 28, .03);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(20,61,47,.18);
+      box-shadow: 0 16px 30px rgba(17, 36, 28, .08);
+    }
+
+    .car-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #eef0ee, #dee7e2);
+    }
+
+    .car-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .42s ease;
+    }
+
+    .car-card:hover .car-image img { transform: scale(1.04); }
+
+    .car-image-shade {
+      position: absolute;
+      inset: 48% 0 0;
+      background: linear-gradient(transparent, rgba(10, 20, 16, .25));
+      pointer-events: none;
+    }
+
+    .car-image-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(199,167,106,.18), transparent 18%),
+        linear-gradient(135deg, #f0f4f1, #dee7e1);
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .car-image-fallback strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .car-image-fallback span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .year-badge {
+      position: absolute;
+      top: 12px;
+      inset-inline-start: 12px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(255,255,255,.92);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .car-body { padding: 16px; }
+
+    .car-brandline {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 6px;
+      color: #7a857f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .car-brandline .brand-mark {
+      flex-basis: 21px;
+      width: 21px;
+      height: 21px;
+    }
+
+    .car-title {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .car-description {
+      min-height: 42px;
+      margin: 9px 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .car-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .meta-chip {
+      padding: 6px 8px;
+      border: 1px solid #ece6df;
+      border-radius: 999px;
+      color: #52615d;
+      background: #f7f5f2;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 13px 0;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .price-caption {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .car-price {
+      color: var(--primary);
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      white-space: nowrap;
+    }
+
+    .price-unit {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .demo-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 0 0 11px;
+      color: #707d78;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .card-button {
+      width: 100%;
+      min-height: 45px;
+      border: 0;
+      border-radius: 10px;
+      color: white;
+      background: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .card-button:hover {
+      transform: translateY(-1px);
+      background: var(--primary-600);
+    }
+
+    details {
+      margin: 11px 0;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      color: #69766f;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      color: var(--accent-strong);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    details[open] summary::after { content: "−"; }
+
+    details p {
+      margin: 8px 0 0;
+      white-space: pre-line;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 38px 20px;
+      border: 1px dashed #d0d5d1;
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255,255,255,.7);
+      text-align: center;
+    }
+
+    /* Branches */
+    .locations-section {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(135deg, #1d372f, #102c25);
+    }
+
+    .locations-section::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 8% 12%, rgba(199,167,106,.12), transparent 34%),
+        radial-gradient(ellipse at 94% 95%, rgba(255,255,255,.04), transparent 35%);
+    }
+
+    .locations-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .locations-section .kicker { color: #e9d7af; }
+    .locations-section h2 { color: white; }
+    .locations-section .intro { color: rgba(255,255,255,.7); }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .location-card {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .location-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(199,167,106,.4);
+      background: rgba(255,255,255,.08);
+    }
+
+    .location-art {
+      --art-a: #586f67;
+      --art-b: #1d4139;
+      --art-mark: #ead9b8;
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 110px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 75% 30%, rgba(255,255,255,.14), transparent 24%),
+        linear-gradient(140deg, var(--art-a), var(--art-b));
+    }
+
+    .location-art.art-two {
+      --art-a: #728065;
+      --art-b: #2f4639;
+      --art-mark: #f1e6d2;
+    }
+
+    .location-art.art-three {
+      --art-a: #647d7c;
+      --art-b: #294e51;
+      --art-mark: #dfe9ea;
+    }
+
+    .location-art.art-four {
+      --art-a: #8d785e;
+      --art-b: #503f31;
+      --art-mark: #f2ead6;
+    }
+
+    .location-art::before,
+    .location-art::after {
+      position: absolute;
+      width: 220px;
+      height: 78px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-23deg);
+    }
+
+    .location-art::before {
+      inset-inline-start: -55px;
+      top: 12px;
+    }
+
+    .location-art::after {
+      inset-inline-end: -75px;
+      bottom: 1px;
+      width: 260px;
+      height: 86px;
+    }
+
+    .art-route {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .75;
+    }
+
+    .art-route path {
+      fill: none;
+      stroke: rgba(255,255,255,.58);
+      stroke-width: 1.4;
+      stroke-dasharray: 4 7;
+      stroke-linecap: round;
+    }
+
+    .art-marker {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 41px;
+      height: 41px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 14px;
+      color: var(--primary);
+      background: var(--art-mark);
+      box-shadow: 0 8px 22px rgba(0,0,0,.18);
+      transform: rotate(-4deg);
+    }
+
+    .art-marker svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .art-index {
+      position: absolute;
+      inset-inline-end: 12px;
+      bottom: 9px;
+      z-index: 1;
+      color: rgba(255,255,255,.76);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .location-content { padding: 14px; }
+
+    .location-card h3 {
+      margin: 0 0 6px;
+      color: white;
+      font-size: 15px;
+    }
+
+    .branch-phone {
+      margin: 0 0 11px;
+      color: rgba(255,255,255,.72);
+      direction: ltr;
+      text-align: start;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .branch-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 0 11px;
+      border: 1px solid rgba(199,167,106,.38);
+      border-radius: 9px;
+      color: white;
+      background: rgba(199,167,106,.08);
+      font-size: 10px;
+      font-weight: 800;
+      transition: color .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .branch-whatsapp:hover {
+      border-color: rgba(199,167,106,.7);
+      color: var(--primary);
+      background: #ead9b8;
+    }
+
+    /* Experience */
+    .experience-section { padding: 0; }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.45);
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 14px;
+      padding: 28px 22px;
+      border-inline-end: 1px solid var(--line);
+    }
+
+    .experience-item:last-child { border-inline-end: 0; }
+
+    .experience-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #e3dbd1;
+      border-radius: 12px;
+      color: var(--primary);
+      background: linear-gradient(180deg, #f5eee6, #f2eee9);
+    }
+
+    .experience-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .experience-item h3 {
+      margin: 1px 0 5px;
+      font-size: 14px;
+    }
+
+    .experience-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    /* Why */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .why-card {
+      padding: 22px 16px 0 0;
+      border-top: 1px solid #ddd7cf;
+    }
+
+    html[dir="rtl"] .why-card {
+      padding-right: 0;
+      padding-left: 16px;
+    }
+
+    .why-number {
+      display: inline-grid;
+      place-items: center;
+      min-width: 40px;
+      min-height: 28px;
+      padding-inline: 8px;
+      border-radius: 999px;
+      color: var(--primary);
+      background: var(--primary-100);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .why-card h3 {
+      margin: 14px 0 8px;
+      font-size: 17px;
+    }
+
+    .why-card p {
+      max-width: 350px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 28px 0;
+      color: rgba(255,255,255,.75);
+      background: #112621;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer .brand img { max-height: 40px; }
+    .footer .brand-fallback { font-size: 23px; }
+    .footer-note { font-size: 11px; }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+      background: rgba(14, 25, 22, .64);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      overscroll-behavior: contain;
+    }
+
+    .modal.open {
+      display: flex;
+      animation: fade-in .18s ease-out;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(520px, 100%);
+      max-height: min(88vh, 760px);
+      max-height: min(88dvh, 760px);
+      overflow-y: auto;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.75);
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 26px 90px rgba(0,0,0,.22);
+      overscroll-behavior: contain;
+      animation: slide-up .2s ease-out;
+    }
+
+    .modal-card h2 {
+      margin: 8px 0 0;
+      padding-inline-end: 40px;
+      font-size: clamp(24px, 4vw, 30px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .modal-card > p {
+      margin: 10px 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 13px;
+      inset-inline-end: 13px;
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      background: #f5f4f1;
+      font-size: 22px;
+    }
+
+    .form-grid { display: grid; gap: 13px; }
+
+    .modal-card .field input,
+    .modal-card .field select {
+      min-height: 49px;
+      border-radius: 10px;
+    }
+
+    .form-grid .button {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 4px;
+      border-radius: 10px;
+    }
+
+    .modal-price-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(20,61,47,.35);
+      outline-offset: 3px;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(12px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Tablet */
+    @media (max-width: 1050px) {
+      .search-panel {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+
+      .search-panel > .button { width: 100%; }
+
+      .cars-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .locations-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 680px) {
+      .container,
+      .hero-content {
+        width: calc(100% - 32px);
+      }
+
+      .nav {
+        min-height: 70px;
+        gap: 10px;
+      }
+
+      .brand {
+        min-width: 85px;
+        min-height: 42px;
+      }
+
+      .brand img {
+        max-width: 112px;
+        height: 39px;
+      }
+
+      .brand-fallback {
+        font-size: 23px;
+        letter-spacing: 2px;
+      }
+
+      .nav-actions { gap: 6px; }
+
+      .nav-button {
+        min-height: 37px;
+        padding-inline: 10px;
+        font-size: 11px;
+      }
+
+      .nav-book { display: none; }
+
+      .currency-option {
+        min-width: 36px;
+        min-height: 29px;
+        padding-inline: 7px;
+        font-size: 10px;
+      }
+
+      .menu-button { display: inline-flex; }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        inset-inline: 16px;
+        display: none;
+        align-items: stretch;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 14px;
+        background: #1d3a30;
+        box-shadow: 0 15px 35px rgba(0,0,0,.2);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links a { padding: 7px 3px; }
+
+      .hero {
+        min-height: 610px;
+        min-height: 82svh;
+      }
+
+      .hero-content { margin-top: 62px; }
+
+      h1 {
+        font-size: clamp(42px, 11vw, 63px);
+        line-height: 1;
+        letter-spacing: -2.5px;
+      }
+
+      html[lang="ar"] h1 {
+        font-size: clamp(39px, 10.5vw, 58px);
+        line-height: 1.2;
+      }
+
+      .hero-copy {
+        max-width: 430px;
+        margin-block: 17px 21px;
+        font-size: 14px;
+      }
+
+      .hero-actions { gap: 15px; }
+
+      .hero-actions .button {
+        min-height: 46px;
+        padding-inline: 15px;
+        font-size: 12px;
+      }
+
+      .hero-link { font-size: 12px; }
+      .hero-note { margin-top: 23px; font-size: 11px; }
+
+      .search-section { margin-top: -23px; }
+
+      .search-panel {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 10px;
+        padding: 13px;
+        border-radius: 15px;
+      }
+
+      .search-panel .field:first-child,
+      .search-panel .field:last-of-type,
+      .search-panel > .button {
+        grid-column: 1 / -1;
+      }
+
+      .field input, .field select { min-height: 45px; }
+      .search-panel > .button { min-height: 45px; }
+
+      .section { padding-block: 63px; }
+      .fleet-section { padding-top: 55px; }
+
+      h2 {
+        font-size: clamp(29px, 7.8vw, 40px);
+        letter-spacing: -.7px;
+      }
+
+      .intro { font-size: 13px; }
+
+      .fleet-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .fleet-count { padding: 0; }
+
+      .brand-filter-wrap { margin-top: 21px; }
+
+      .brand-filter {
+        min-width: 104px;
+        min-height: 53px;
+        gap: 7px;
+        padding: 7px 10px;
+      }
+
+      .brand-filter-label { font-size: 11px; }
+
+      .cars-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 16px;
+      }
+
+      .car-image { height: clamp(205px, 59vw, 270px); }
+      .car-body { padding: 16px; }
+      .car-description { min-height: 0; }
+
+      .locations-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 10px;
+      }
+
+      .location-art { height: 102px; }
+      .location-content { padding: 12px; }
+      .location-card h3 { font-size: 14px; }
+      .branch-phone { font-size: 11px; }
+
+      .branch-whatsapp {
+        width: 100%;
+        min-height: 37px;
+        padding-inline: 5px;
+        font-size: 9px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+        border-bottom: 0;
+      }
+
+      .experience-item {
+        padding: 18px 0;
+        border-inline-end: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .experience-item:last-child { border-bottom: 0; }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 26px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .modal {
+        align-items: flex-end;
+        padding: 10px 10px 0;
+      }
+
+      .modal-card {
+        width: 100%;
+        max-height: 90vh;
+        max-height: 90dvh;
+        padding: 24px 19px calc(20px + env(safe-area-inset-bottom));
+        border-radius: 21px 21px 0 0;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .locations-grid { grid-template-columns: 1fr; }
+      .location-art { height: 130px; }
+      .branch-whatsapp { width: auto; padding-inline: 11px; }
+      .search-panel { grid-template-columns: 1fr; }
+      .search-panel .field,
+      .search-panel > .button { grid-column: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="ARBD home">
+        <img
+          src="assets/arbd-logo.png"
+          alt="ARBD"
+          onerror="this.hidden=true;this.nextElementSibling.hidden=false"
+        >
+        <span class="brand-fallback" hidden>ARBD</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#cars" data-i18n="navCars">Our cars</a>
+        <a href="#locations" data-i18n="navLocations">Locations</a>
+        <a href="#why" data-i18n="navWhy">Why ARBD</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-button nav-book" id="navBookButton" type="button" data-i18n="navBook">
+          Request a car
+        </button>
+
+        <div class="currency-switch" role="group" aria-label="Display currency">
+          <button class="currency-option active" type="button" data-currency="SAR" aria-pressed="true">SAR</button>
+          <button class="currency-option" type="button" data-currency="USD" aria-pressed="false">USD</button>
+        </div>
+
+        <button class="nav-button" id="languageToggle" type="button">العربية</button>
+        <button class="nav-button menu-button" id="menuToggle" type="button" aria-label="Open menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="assets/carr00.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-content">
+        <div class="eyebrow" data-i18n="eyebrow">YOUR JOURNEY, YOUR WAY</div>
+        <h1 data-i18n="heroTitle">Find your road.<br>We’ll get you there.</h1>
+        <p class="hero-copy" data-i18n="heroCopy">
+          The right car makes every journey better. Explore our fleet and find a rental that fits your plans.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-hero" href="#cars">
+            <span data-i18n="browseCars">Explore the fleet</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="hero-link" href="#locations">
+            <span data-i18n="findLocation">Choose your branch</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span class="hero-note-dot" aria-hidden="true"></span>
+          <span data-i18n="heroNote">Choose a car, model year, and branch to send your inquiry.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section container" aria-label="Car search">
+      <form class="search-panel" id="searchForm">
+        <div class="field">
+          <label for="carSearch" data-i18n="searchLabel">Search by model</label>
+          <input id="carSearch" type="search" placeholder="e.g. Corolla" data-i18n-placeholder="searchPlaceholder">
+        </div>
+
+        <div class="field">
+          <label for="yearFilter" data-i18n="yearLabel">Model year</label>
+          <select id="yearFilter">
+            <option value="" data-i18n="allYears">All years</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="bodyFilter" data-i18n="bodyLabel">Vehicle type</label>
+          <select id="bodyFilter">
+            <option value="" data-i18n="allTypes">All vehicle types</option>
+            <option value="sedan" data-i18n="sedanType">Sedan</option>
+            <option value="compact" data-i18n="compactType">Compact</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="locationFilter" data-i18n="pickupLabel">Preferred branch</label>
+          <select id="locationFilter"></select>
+        </div>
+
+        <button class="button" type="submit">
+          <span data-i18n="searchButton">Show matching cars</span>
+          <span aria-hidden="true">⌕</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="section fleet-section" id="cars">
+      <div class="container">
+        <div class="fleet-header">
+          <div class="fleet-copy">
+            <p class="kicker" data-i18n="fleetKicker">THE ARBD FLEET</p>
+            <h2 data-i18n="fleetTitle">Choose the car that fits your plans.</h2>
+            <p class="intro" data-i18n="fleetIntro">
+              Browse 2024–2027 model years, compare demo daily rates, and contact your branch.
+            </p>
+          </div>
+          <div class="fleet-count" id="fleetCount" aria-live="polite"></div>
+        </div>
+
+        <div class="brand-filter-wrap">
+          <div class="brand-filters" id="brandFilters" role="group" aria-label="Filter by car brand"></div>
+        </div>
+
+        <div class="cars-grid" id="carsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section locations-section" id="locations">
+      <div class="container">
+        <p class="kicker" data-i18n="locationsKicker">BRANCH CONTACTS</p>
+        <h2 data-i18n="locationsTitle">Choose the branch that suits you.</h2>
+        <p class="intro" data-i18n="locationsIntro">
+          Message your preferred branch. They can confirm vehicle availability and final pricing.
+        </p>
+        <div class="locations-grid" id="locationsGrid"></div>
+      </div>
+    </section>
+
+    <section class="experience-section" aria-label="Rental inquiry steps">
+      <div class="container experience-grid">
+        <article class="experience-item">
+          <span class="experience-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 14.5 5.4 9a2 2 0 0 1 1.9-1.5h9.4A2 2 0 0 1 18.6 9l1.4 5.5V19h-2v-2H6v2H4v-4.5Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M5 13h14M7.5 10.5h.01M16.5 10.5h.01"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3 data-i18n="stepOneTitle">Choose a car and year</h3>
+            <p data-i18n="stepOneCopy">Browse the models and select a model year from 2024 to 2027.</p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <span class="experience-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.7"/>
+            </svg>
+          </span>
+          <div>
+            <h3 data-i18n="stepTwoTitle">Pick your branch</h3>
+            <p data-i18n="stepTwoCopy">Choose the branch you want to contact about your rental.</p>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <span class="experience-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 11.5a7.5 7.5 0 0 1-11.2 6.5L4 19l1.1-4.2A7.5 7.5 0 1 1 20 11.5Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M8.8 10.1c.5 1.7 1.4 2.6 3.1 3.2"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3 data-i18n="stepThreeTitle">Send your inquiry</h3>
+            <p data-i18n="stepThreeCopy">Review your dates and send the request to your branch on WhatsApp.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <p class="kicker" data-i18n="whyKicker">THE ARBD WAY</p>
+        <h2 data-i18n="whyTitle">A clearer way to start your rental.</h2>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <span class="why-number">01</span>
+            <h3 data-i18n="why1Title">Browse at your pace</h3>
+            <p data-i18n="why1Copy">Search by brand, model year, and vehicle type before you contact a branch.</p>
+          </article>
+
+          <article class="why-card">
+            <span class="why-number">02</span>
+            <h3 data-i18n="why2Title">Compare specific years</h3>
+            <p data-i18n="why2Copy">Each model year appears as its own card, with matching trims and demo price.</p>
+          </article>
+
+          <article class="why-card">
+            <span class="why-number">03</span>
+            <h3 data-i18n="why3Title">Send an inquiry</h3>
+            <p data-i18n="why3Copy">Your car, year, dates, branch, and displayed demo price are included in the WhatsApp message.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#" aria-label="ARBD home">
+        <img
+          src="assets/arbd-logo.png"
+          alt="ARBD"
+          onerror="this.hidden=true;this.nextElementSibling.hidden=false"
+        >
+        <span class="brand-fallback" hidden>ARBD</span>
+      </a>
+      <div class="footer-note" data-i18n="footer">
+        © 2026 ARBD Car Rental. Demo rates are not a confirmed quote.
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+      <p class="kicker" data-i18n="modalKicker">RENTAL INQUIRY</p>
+      <h2 id="modalTitle" data-i18n="modalTitle">Tell us what you need.</h2>
+      <p data-i18n="modalIntro">
+        We’ll prepare a WhatsApp inquiry with your selected car, model year, and dates.
+      </p>
+
+      <form class="form-grid" id="bookingForm">
+        <div class="field">
+          <label for="bookingCar" data-i18n="formCar">Car</label>
+          <select id="bookingCar" required></select>
+        </div>
+
+        <div class="field">
+          <label for="bookingYear" data-i18n="formYear">Model year</label>
+          <select id="bookingYear" required></select>
+        </div>
+
+        <div class="field">
+          <label for="bookingLocation" data-i18n="formLocation">Branch</label>
+          <select id="bookingLocation" required></select>
+        </div>
+
+        <div class="field">
+          <label for="customerName" data-i18n="formName">Your name</label>
+          <input id="customerName" required autocomplete="name" placeholder="Enter your name" data-i18n-placeholder="namePlaceholder">
+        </div>
+
+        <div class="field">
+          <label for="startDate" data-i18n="startDate">Rental start date</label>
+          <input id="startDate" type="date" required>
+        </div>
+
+        <div class="field">
+          <label for="endDate" data-i18n="endDate">Rental end date</label>
+          <input id="endDate" type="date" required>
+        </div>
+
+        <p class="modal-price-note" data-i18n="modalPriceNote">
+          Prices shown are demo estimates and are not a confirmed rental quote.
+        </p>
+
+        <button class="button" type="submit">
+          <span data-i18n="whatsappButton">Continue to WhatsApp</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const USD_PER_SAR = 1 / 3.75;
+    let currency = "SAR";
+    let language = "en";
+    let selectedBrand = "all";
+    let lastFocusedElement = null;
+
+    const locations = [
+      { id: "ishbiliya", en: "Ishbiliya", ar: "إشبيلية", phone: "0556281274", art: "art-one" },
+      { id: "qurtubah", en: "Qurtubah", ar: "قرطبة", phone: "0538263606", art: "art-two" },
+      { id: "sulaymaniyah", en: "Al Sulaymaniyah", ar: "السليمانية", phone: "0579509703", art: "art-three" },
+      { id: "majmaah", en: "Al Majma'ah", ar: "المجمعة", phone: "0552550399", art: "art-four" }
+    ];
+
+    const cars = [
+      {
+        id: "hyundai-elantra",
+        name: "Hyundai Elantra",
+        brand: "Hyundai",
+        type: "sedan",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 145, 2025: 155, 2026: 165, 2027: 175 },
+        imageFolder: "assets/cars",
+        en: "A refined sedan with a comfortable cabin for everyday drives.",
+        ar: "سيارة سيدان أنيقة بمقصورة مريحة للمشاوير اليومية.",
+        tagsEn: ["Sedan", "Comfort", "2.0L CVT"],
+        tagsAr: ["سيدان", "راحة", "2.0L CVT"],
+        trims: {
+          2024: "Essential, Preferred, Luxury, N Line Ultimate",
+          2025: "Essential, Preferred with Tech Package, Luxury, Luxury Hybrid, N Line Ultimate",
+          2026: "Essential, Preferred with Tech Package, Luxury, Luxury Hybrid, N Line, N Line Ultimate",
+          2027: "Anticipated redesign; confirm exact trims and availability with the branch"
+        }
+      },
+      {
+        id: "hyundai-accent",
+        name: "Hyundai Accent",
+        brand: "Hyundai",
+        type: "sedan",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 115, 2025: 120, 2026: 125, 2027: 135 },
+        imageFolder: "assets/cars",
+        en: "A practical, efficient sedan for city commutes and getting around.",
+        ar: "سيارة سيدان عملية وموفرة، مناسبة للتنقل اليومي داخل المدينة.",
+        tagsEn: ["Sedan", "Efficient", "1.4L / 1.5L"],
+        tagsAr: ["سيدان", "موفرة", "1.4L / 1.5L"],
+        trims: {
+          2024: "Base/Fleet, Smart, Comfort",
+          2025: "Fleet, Comfort, Smart",
+          2026: "Fleet, Comfort, Smart",
+          2027: "Updated exterior and infotainment; confirm exact trims and availability"
+        }
+      },
+      {
+        id: "hyundai-i10",
+        name: "Hyundai i10",
+        brand: "Hyundai",
+        type: "compact",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 95, 2025: 100, 2026: 105, 2027: 110 },
+        imageFolder: "assets/cars",
+        en: "A compact city car for easy everyday trips and parking.",
+        ar: "سيارة مدينة صغيرة للمشاوير اليومية والمواقف بسهولة.",
+        tagsEn: ["Compact", "City car", "1.0L / 1.2L"],
+        tagsAr: ["مدمجة", "سيارة مدينة", "1.0L / 1.2L"],
+        trims: {
+          2024: "Pure, Advance, Passion / N-Line",
+          2025: "Classic, Comfort, Style / N-Line",
+          2026: "Trend, Prime, N-Line",
+          2027: "Carryover/facelift expected; confirm exact trims and availability"
+        }
+      },
+      {
+        id: "toyota-yaris",
+        name: "Toyota Yaris",
+        brand: "Toyota",
+        type: "sedan",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 125, 2025: 135, 2026: 145, 2027: 155 },
+        imageFolder: "assets/cars",
+        en: "A versatile, fuel-conscious choice available as a sedan or hatchback.",
+        ar: "خيار عملي واقتصادي في استهلاك الوقود، متوفر بنسختي السيدان والهاتشباك.",
+        tagsEn: ["Sedan / Hatchback", "Efficient", "Toyota"],
+        tagsAr: ["سيدان / هاتشباك", "موفرة", "تويوتا"],
+        trims: {
+          2024: "Active, Comfort, High Grade, Y Plus",
+          2025: "Base, Mid, High Grade / Y-Plus",
+          2026: "1.3L Y Plus, 1.5L High Grade, Hybrid variants",
+          2027: "Connectivity and fuel-efficiency updates; confirm exact trims"
+        }
+      },
+      {
+        id: "toyota-corolla",
+        name: "Toyota Corolla",
+        brand: "Toyota",
+        type: "sedan",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 155, 2025: 165, 2026: 175, 2027: 185 },
+        imageFolder: "assets/cars",
+        en: "A well-rounded favorite for comfortable commutes and longer drives.",
+        ar: "سيارة متوازنة ومفضلة، مناسبة للتنقل اليومي والرحلات الطويلة.",
+        tagsEn: ["Sedan", "Popular", "Toyota"],
+        tagsAr: ["سيدان", "مفضلة", "تويوتا"],
+        trims: {
+          2024: "Vision, Dream, Flame, Passion, GR-Sport",
+          2025: "Flame X-Pack, Passion, hybrid-exclusive packages",
+          2026: "Flame, Passion, Hybrid e-CVT",
+          2027: "Hybrid and technology updates; confirm exact trims and availability"
+        }
+      },
+      {
+        id: "kia-pegas",
+        name: "Kia Pegas",
+        brand: "Kia",
+        type: "sedan",
+        years: [2024, 2025, 2026, 2027],
+        prices: { 2024: 105, 2025: 110, 2026: 115, 2027: 120 },
+        imageFolder: "assets/cars",
+        en: "A spacious, value-focused sedan for practical everyday driving.",
+        ar: "سيارة سيدان رحبة وعملية، تجمع بين القيمة وسهولة الاستخدام اليومي.",
+        tagsEn: ["Sedan", "Practical", "1.4L MPI"],
+        tagsAr: ["سيدان", "عملية", "1.4L MPI"],
+        trims: {
+          2024: "LX, EX",
+          2025: "LX, EX, MPI Top",
+          2026: "LX, EX Top",
+          2027: "Practical carryover model; confirm exact trims and availability"
+        }
+      }
+    ];
+
+    const words = {
+      en: {
+        navCars: "Our cars",
+        navLocations: "Locations",
+        navWhy: "Why ARBD",
+        navBook: "Request a car",
+        eyebrow: "YOUR JOURNEY, YOUR WAY",
+        heroTitle: "Find your road.<br>We’ll get you there.",
+        heroCopy: "The right car makes every journey better. Explore our fleet and find a rental that fits your plans.",
+        browseCars: "Explore the fleet",
+        findLocation: "Choose your branch",
+        heroNote: "Choose a car, model year, and branch to send your inquiry.",
+        searchLabel: "Search by model",
+        searchPlaceholder: "e.g. Corolla",
+        yearLabel: "Model year",
+        allYears: "All years",
+        bodyLabel: "Vehicle type",
+        allTypes: "All vehicle types",
+        sedanType: "Sedan",
+        compactType: "Compact",
+        pickupLabel: "Preferred branch",
+        allLocations: "Choose a branch",
+        searchButton: "Show matching cars",
+        fleetKicker: "THE ARBD FLEET",
+        fleetTitle: "Choose the car that fits your plans.",
+        fleetIntro: "Browse 2024–2027 model years, compare demo daily rates, and contact your branch.",
+        carsCount: "{count} cars",
+        allBrands: "All",
+        details: "Year-specific model details",
+        request: "Request this car",
+        priceLabel: "Demo daily rate",
+        perDay: "/ day",
+        demoDisclaimer: "Demo estimate only. Confirm final rates and availability with the branch.",
+        noResults: "No cars match your filters. Try changing your search.",
+        locationsKicker: "BRANCH CONTACTS",
+        locationsTitle: "Choose the branch that suits you.",
+        locationsIntro: "Message your preferred branch. They can confirm vehicle availability and final pricing.",
+        branchWhatsApp: "Message branch",
+        whyKicker: "THE ARBD WAY",
+        whyTitle: "A clearer way to start your rental.",
+        why1Title: "Browse at your pace",
+        why1Copy: "Search by brand, model year, and vehicle type before you contact a branch.",
+        why2Title: "Compare specific years",
+        why2Copy: "Each model year appears as its own card, with matching trims and demo price.",
+        why3Title: "Send an inquiry",
+        why3Copy: "Your car, year, dates, branch, and displayed demo price are included in the WhatsApp message.",
+        stepOneTitle: "Choose a car and year",
+        stepOneCopy: "Browse the models and select a model year from 2024 to 2027.",
+        stepTwoTitle: "Pick your branch",
+        stepTwoCopy: "Choose the branch you want to contact about your rental.",
+        stepThreeTitle: "Send your inquiry",
+        stepThreeCopy: "Review your dates and send the request to your branch on WhatsApp.",
+        footer: "© 2026 ARBD Car Rental. Demo rates are not a confirmed quote.",
+        modalKicker: "RENTAL INQUIRY",
+        modalTitle: "Tell us what you need.",
+        modalIntro: "We’ll prepare a WhatsApp inquiry with your selected car, model year, and dates.",
+        formCar: "Car",
+        chooseCar: "Choose a car",
+        formYear: "Model year",
+        chooseYear: "Choose a year",
+        formLocation: "Branch",
+        chooseLocation: "Choose a branch",
+        formName: "Your name",
+        namePlaceholder: "Enter your name",
+        startDate: "Rental start date",
+        endDate: "Rental end date",
+        modalPriceNote: "Prices shown are demo estimates and are not a confirmed rental quote.",
+        whatsappButton: "Continue to WhatsApp",
+        whatsappGreeting: "Hello ARBD, I have a question about renting a car. Please help me.",
+        whatsappMessage: "Hello ARBD, I’m interested in renting a {year} {car}. My name is {name}. My preferred rental dates are {start} to {end}. Branch: {location}. The website showed a demo rate of {price} per day. Please confirm availability and the final price."
+      },
+      ar: {
+        navCars: "سياراتنا",
+        navLocations: "الفروع",
+        navWhy: "لماذا ARBD",
+        navBook: "اطلب سيارة",
+        eyebrow: "رحلتك على طريقتك",
+        heroTitle: "اختر طريقك.<br>ونحن نوصلك.",
+        heroCopy: "السيارة المناسبة تجعل كل رحلة أفضل. اكتشف أسطولنا واختر سيارة تناسب خططك.",
+        browseCars: "اكتشف الأسطول",
+        findLocation: "اختر الفرع",
+        heroNote: "اختر السيارة والموديل والفرع لإرسال طلبك.",
+        searchLabel: "ابحث باسم السيارة",
+        searchPlaceholder: "مثال: كورولا",
+        yearLabel: "سنة الموديل",
+        allYears: "كل السنوات",
+        bodyLabel: "نوع السيارة",
+        allTypes: "كل الأنواع",
+        sedanType: "سيدان",
+        compactType: "مدمجة",
+        pickupLabel: "الفرع المفضل",
+        allLocations: "اختر فرعاً",
+        searchButton: "اعرض السيارات",
+        fleetKicker: "أسطول ARBD",
+        fleetTitle: "اختر السيارة المناسبة لخططك.",
+        fleetIntro: "تصفح موديلات 2024–2027، وقارن الأسعار اليومية التجريبية، وتواصل مع الفرع.",
+        carsCount: "{count} سيارات",
+        allBrands: "الكل",
+        details: "تفاصيل الموديل لهذه السنة",
+        request: "اطلب هذه السيارة",
+        priceLabel: "السعر اليومي التجريبي",
+        perDay: "/ يوم",
+        demoDisclaimer: "سعر تجريبي فقط. يرجى تأكيد السعر والتوفر مع الفرع.",
+        noResults: "لا توجد سيارات تطابق خياراتك. جرّب تغيير البحث.",
+        locationsKicker: "التواصل مع الفروع",
+        locationsTitle: "اختر الفرع المناسب لك.",
+        locationsIntro: "راسل الفرع المفضل. يمكن للفريق تأكيد التوفر والسعر النهائي.",
+        branchWhatsApp: "راسل الفرع",
+        whyKicker: "أسلوب ARBD",
+        whyTitle: "بداية أوضح لطلب الاستئجار.",
+        why1Title: "تصفح على راحتك",
+        why1Copy: "ابحث حسب العلامة التجارية وسنة الموديل ونوع السيارة قبل التواصل مع الفرع.",
+        why2Title: "قارن سنوات الموديل",
+        why2Copy: "تظهر كل سنة موديل في بطاقة مستقلة بسعر تجريبي وفئاتها الخاصة.",
+        why3Title: "أرسل طلبك",
+        why3Copy: "تتضمن رسالة واتساب السيارة والسنة والتواريخ والفرع والسعر التجريبي المعروض.",
+        stepOneTitle: "اختر السيارة والسنة",
+        stepOneCopy: "تصفح السيارات واختر سنة الموديل من 2024 إلى 2027.",
+        stepTwoTitle: "اختر الفرع",
+        stepTwoCopy: "حدد الفرع الذي تريد التواصل معه بخصوص الاستئجار.",
+        stepThreeTitle: "أرسل طلبك",
+        stepThreeCopy: "راجع التواريخ وأرسل الطلب إلى الفرع عبر واتساب.",
+        footer: "© 2026 تأجير سيارات ARBD. الأسعار تجريبية وليست عرضاً نهائياً.",
+        modalKicker: "طلب استئجار",
+        modalTitle: "أخبرنا بما تحتاج.",
+        modalIntro: "سنجهز رسالة واتساب تتضمن السيارة والسنة والتواريخ التي اخترتها.",
+        formCar: "السيارة",
+        chooseCar: "اختر سيارة",
+        formYear: "سنة الموديل",
+        chooseYear: "اختر السنة",
+        formLocation: "الفرع",
+        chooseLocation: "اختر فرعاً",
+        formName: "الاسم",
+        namePlaceholder: "اكتب اسمك",
+        startDate: "تاريخ بدء الاستئجار",
+        endDate: "تاريخ انتهاء الاستئجار",
+        modalPriceNote: "الأسعار المعروضة تقديرية وتجريبية وليست عرض استئجار مؤكداً.",
+        whatsappButton: "تابع إلى واتساب",
+        whatsappGreeting: "مرحباً ARBD، لدي استفسار عن استئجار سيارة. أرجو مساعدتي.",
+        whatsappMessage: "مرحباً ARBD، أرغب في استئجار {car} موديل {year}. اسمي {name}. التواريخ المفضلة من {start} إلى {end}. الفرع: {location}. ظهر على الموقع سعر تجريبي قدره {price} في اليوم. يرجى تأكيد التوفر والسعر النهائي."
+      }
+    };
+
+    const $ = selector => document.querySelector(selector);
+    const carsGrid = $("#carsGrid");
+    const locationFilter = $("#locationFilter");
+    const bookingModal = $("#bookingModal");
+
+    const today = new Date();
+    const localToday = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().slice(0, 10);
+
+    $("#startDate").min = localToday;
+    $("#endDate").min = localToday;
+
+    function t(key) {
+      return words[language][key];
+    }
+
+    function locationName(location) {
+      return language === "ar" ? location.ar : location.en;
+    }
+
+    function formatPrice(priceSar) {
+      const amount = currency === "USD" ? priceSar / 3.75 : priceSar;
+      const locale = language === "ar" ? "ar-SA" : "en-US";
+
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        maximumFractionDigits: 0
+      }).format(amount);
+    }
+
+    function makeWhatsAppUrl(location, message) {
+      const phone = "966" + location.phone.replace(/\D/g, "").replace(/^0/, "");
+      return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    }
+
+    function brandIcon(brand) {
+      if (brand === "Hyundai") {
+        return `
+          <svg viewBox="0 0 48 32" aria-hidden="true">
+            <ellipse cx="24" cy="16" rx="21" ry="12.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M16 23 19 9h3l-1 5h7l1-5h3l-3 14h-3l1-6h-7l-1 6h-3Z" fill="currentColor"/>
+          </svg>`;
+      }
+
+      if (brand === "Toyota") {
+        return `
+          <svg viewBox="0 0 48 34" aria-hidden="true">
+            <ellipse cx="24" cy="17" rx="20" ry="12" fill="none" stroke="currentColor" stroke-width="2.1"/>
+            <ellipse cx="24" cy="17" rx="8" ry="11" fill="none" stroke="currentColor" stroke-width="2.1"/>
+            <ellipse cx="24" cy="17" rx="17" ry="5.2" fill="none" stroke="currentColor" stroke-width="2.1"/>
+          </svg>`;
+      }
+
+      return `
+        <svg viewBox="0 0 48 32" aria-hidden="true">
+          <path d="M5 8h38v5H5zM5 19h8l10-7h7l-10 8 10 5h-8l-9-5H5zM43 19h-8l-10 7h-7l10-8-10-5h8l9 5h8z"
+                fill="currentColor"/>
+        </svg>`;
+    }
+
+    function renderBrandFilters() {
+      const brands = ["all", "Hyundai", "Toyota", "Kia"];
+
+      $("#brandFilters").innerHTML = brands.map(brand => {
+        const isAll = brand === "all";
+        const label = isAll ? t("allBrands") : brand;
+        const icon = isAll ? "" : `<span class="brand-mark">${brandIcon(brand)}</span>`;
+
+        return `
+          <button class="brand-filter ${selectedBrand === brand ? "active" : ""}"
+                  type="button"
+                  data-brand="${brand}"
+                  aria-pressed="${selectedBrand === brand}">
+            ${icon}
+            <span class="${isAll ? "brand-filter-all" : "brand-filter-label"}">${label}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderSelects() {
+      const selectedSearchLocation = locationFilter.value;
+
+      locationFilter.innerHTML =
+        `<option value="">${t("allLocations")}</option>` +
+        locations.map(location =>
+          `<option value="${location.id}">${locationName(location)}</option>`
+        ).join("");
+
+      if (locations.some(location => location.id === selectedSearchLocation)) {
+        locationFilter.value = selectedSearchLocation;
+      }
+
+      const bookingLocation = $("#bookingLocation");
+      const selectedBookingLocation = bookingLocation.value;
+
+      bookingLocation.innerHTML =
+        `<option value="">${t("chooseLocation")}</option>` +
+        locations.map(location =>
+          `<option value="${location.id}">${locationName(location)}</option>`
+        ).join("");
+
+      if (locations.some(location => location.id === selectedBookingLocation)) {
+        bookingLocation.value = selectedBookingLocation;
+      }
+
+      const bookingCar = $("#bookingCar");
+      const selectedCar = bookingCar.value;
+
+      bookingCar.innerHTML =
+        `<option value="">${t("chooseCar")}</option>` +
+        cars.map(car => `<option value="${car.id}">${car.name}</option>`).join("");
+
+      if (cars.some(car => car.id === selectedCar)) {
+        bookingCar.value = selectedCar;
+      }
+    }
+
+    function locationIllustration(location, index) {
+      return `
+        <div class="location-art ${location.art}" aria-hidden="true">
+          <svg class="art-route" viewBox="0 0 420 150" preserveAspectRatio="none">
+            <path d="M-20 126 C50 70 95 141 160 91 S270 42 440 80"></path>
+            <path d="M-10 143 C70 102 112 149 185 108 S300 61 435 99"></path>
+          </svg>
+          <span class="art-marker">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 10.1c0 5.2-8 11.1-8 11.1S4 15.3 4 10.1a8 8 0 1 1 16 0Z"
+                    stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <circle cx="12" cy="10" r="2.6"
+                      stroke="currentColor" stroke-width="1.8"></circle>
+            </svg>
+          </span>
+          <span class="art-index">${String(index + 1).padStart(2, "0")}</span>
+        </div>
+      `;
+    }
+
+    function renderLocations() {
+      $("#locationsGrid").innerHTML = locations.map((location, index) => {
+        const url = makeWhatsAppUrl(location, t("whatsappGreeting"));
+
+        return `
+          <article class="location-card">
+            ${locationIllustration(location, index)}
+            <div class="location-content">
+              <h3>${locationName(location)}</h3>
+              <p class="branch-phone">${location.phone}</p>
+              <a class="branch-whatsapp"
+                 href="${url}"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <span>${t("branchWhatsApp")}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function getVariants() {
+      return cars.flatMap(car =>
+        car.years.map(year => ({ car, year }))
+      );
+    }
+
+    function getCarImagePath(car, year) {
+      return `${car.imageFolder}/${car.id}-${year}.jpg`;
+    }
+
+    function renderCars() {
+      const query = $("#carSearch").value.trim().toLowerCase();
+      const yearFilter = $("#yearFilter").value;
+      const typeFilter = $("#bodyFilter").value;
+
+      const variants = getVariants().filter(({ car, year }) =>
+        (!query || `${car.name} ${car.brand}`.toLowerCase().includes(query)) &&
+        (!yearFilter || year === Number(yearFilter)) &&
+        (!typeFilter || car.type === typeFilter) &&
+        (selectedBrand === "all" || car.brand === selectedBrand)
+      );
+
+      $("#fleetCount").textContent = t("carsCount").replace("{count}", variants.length);
+
+      if (!variants.length) {
+        carsGrid.innerHTML = `<div class="empty-state">${t("noResults")}</div>`;
+        return;
+      }
+
+      carsGrid.innerHTML = variants.map(({ car, year }) => {
+        const description = language === "ar" ? car.ar : car.en;
+        const tags = language === "ar" ? car.tagsAr : car.tagsEn;
+        const priceSar = car.prices[year];
+        const trimLabel = language === "ar" ? "الفئات" : "Trims";
+        const yearDetails = `${year} — ${trimLabel}: ${car.trims[year]}`;
+        const imagePath = getCarImagePath(car, year);
+
+        return `
+          <article class="car-card" data-car-card="${car.id}" data-model-year="${year}">
+            <div class="car-image">
+              <img
+                src="${imagePath}"
+                alt="${car.name} ${year}"
+                loading="lazy"
+                onerror="this.hidden=true;this.nextElementSibling.hidden=false"
+              >
+              <div class="car-image-fallback" hidden>
+                <div>
+                  <strong>${car.name}</strong>
+                  <span>${year} · ${language === "ar" ? "أضف صورة السيارة" : "Add model photo"}</span>
+                </div>
+              </div>
+              <span class="year-badge">${year} ${language === "ar" ? "موديل" : "MODEL"}</span>
+              <span class="car-image-shade"></span>
+            </div>
+
+            <div class="car-body">
+              <div class="car-brandline">
+                <span class="brand-mark">${brandIcon(car.brand)}</span>
+                <span>${car.brand}</span>
+              </div>
+
+              <h3 class="car-title">${car.name}</h3>
+              <p class="car-description">${description}</p>
+
+              <div class="car-meta">
+                ${tags.map(tag => `<span class="meta-chip">${tag}</span>`).join("")}
+              </div>
+
+              <div class="price-row">
+                <div>
+                  <span class="price-caption">${t("priceLabel")}</span>
+                  <strong class="car-price" data-price-sar="${priceSar}">
+                    ${formatPrice(priceSar)}
+                  </strong>
+                  <span class="price-unit">${t("perDay")}</span>
+                </div>
+              </div>
+
+              <p class="demo-note">
+                <span aria-hidden="true">ⓘ</span>
+                <span>${t("demoDisclaimer")}</span>
+              </p>
+
+              <details>
+                <summary>${t("details")}</summary>
+                <p>${yearDetails}</p>
+              </details>
+
+              <button class="card-button"
+                      type="button"
+                      data-book="${car.id}"
+                      data-year="${year}">
+                ${t("request")} ↗
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function updateVisiblePrices() {
+      document.querySelectorAll(".car-price[data-price-sar]").forEach(element => {
+        element.textContent = formatPrice(Number(element.dataset.priceSar));
+      });
+    }
+
+    function renderBookingYearOptions(car, chosenYear) {
+      const yearSelect = $("#bookingYear");
+      const years = car ? car.years : [2024, 2025, 2026, 2027];
+
+      yearSelect.innerHTML =
+        `<option value="">${t("chooseYear")}</option>` +
+        years.map(year =>
+          `<option value="${year}" ${year === chosenYear ? "selected" : ""}>${year}</option>`
+        ).join("");
+    }
+
+    function showBookingModal() {
+      lastFocusedElement = document.activeElement;
+      bookingModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => $("#customerName").focus());
+    }
+
+    function hideBookingModal() {
+      bookingModal.classList.remove("open");
+      document.body.style.overflow = "";
+
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+    }
+
+    function openBooking(carId = "", year = null) {
+      renderSelects();
+
+      const car = cars.find(item => item.id === carId);
+      $("#bookingCar").value = car ? car.id : "";
+      renderBookingYearOptions(car, year);
+
+      if (locationFilter.value) {
+        $("#bookingLocation").value = locationFilter.value;
+      }
+
+      showBookingModal();
+    }
+
+    function setLanguage(nextLanguage) {
+      language = nextLanguage;
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      $("#languageToggle").textContent = language === "ar" ? "English" : "العربية";
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        if (t(key)) element.innerHTML = t(key);
+      });
+
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+        const key = element.dataset.i18nPlaceholder;
+        if (t(key)) element.placeholder = t(key);
+      });
+
+      renderSelects();
+      renderBrandFilters();
+      renderLocations();
+      renderCars();
+    }
+
+    $("#languageToggle").addEventListener("click", () => {
+      setLanguage(language === "en" ? "ar" : "en");
+    });
+
+    document.querySelectorAll(".currency-option").forEach(button => {
+      button.addEventListener("click", () => {
+        currency = button.dataset.currency;
+
+        document.querySelectorAll(".currency-option").forEach(option => {
+          const active = option.dataset.currency === currency;
+          option.classList.toggle("active", active);
+          option.setAttribute("aria-pressed", String(active));
+        });
+
+        updateVisiblePrices();
+      });
+    });
+
+    $("#menuToggle").addEventListener("click", () => {
+      $("#navLinks").classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => $("#navLinks").classList.remove("open"));
+    });
+
+    $("#navBookButton").addEventListener("click", () => openBooking());
+
+    $("#brandFilters").addEventListener("click", event => {
+      const button = event.target.closest("[data-brand]");
+      if (!button) return;
+
+      selectedBrand = button.dataset.brand;
+      renderBrandFilters();
+      renderCars();
+    });
+
+    $("#searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      renderCars();
+      $("#cars").scrollIntoView({ behavior: "smooth" });
+    });
+
+    $("#carSearch").addEventListener("input", renderCars);
+    $("#yearFilter").addEventListener("change", renderCars);
+    $("#bodyFilter").addEventListener("change", renderCars);
+
+    carsGrid.addEventListener("click", event => {
+      const button = event.target.closest("[data-book]");
+      if (!button) return;
+
+      openBooking(button.dataset.book, Number(button.dataset.year));
+    });
+
+    $("#bookingCar").addEventListener("change", () => {
+      const car = cars.find(item => item.id === $("#bookingCar").value);
+      renderBookingYearOptions(car, null);
+    });
+
+    $("#modalClose").addEventListener("click", hideBookingModal);
+
+    bookingModal.addEventListener("click", event => {
+      if (event.target === bookingModal) hideBookingModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && bookingModal.classList.contains("open")) {
+        hideBookingModal();
+      }
+    });
+
+    $("#startDate").addEventListener("change", () => {
+      const start = $("#startDate").value;
+      $("#endDate").min = start || localToday;
+
+      if ($("#endDate").value && $("#endDate").value < start) {
+        $("#endDate").value = "";
+      }
+    });
+
+    $("#bookingForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const car = cars.find(item => item.id === $("#bookingCar").value);
+      const year = Number($("#bookingYear").value);
+      const location = locations.find(item => item.id === $("#bookingLocation").value);
+
+      if (!car || !car.years.includes(year) || !location) return;
+
+      const price = `${currency} ${formatPrice(car.prices[year])}`;
+      const message = t("whatsappMessage")
+        .replace("{car}", car.name)
+        .replace("{year}", year)
+        .replace("{name}", $("#customerName").value.trim())
+        .replace("{start}", $("#startDate").value)
+        .replace("{end}", $("#endDate").value)
+        .replace("{location}", locationName(location))
+        .replace("{price}", price);
+
+      window.open(
+        makeWhatsAppUrl(location, message),
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      hideBookingModal();
+    });
+
+    renderSelects();
+    renderBrandFilters();
+    renderLocations();
+    renderCars();
+  </script>
+</body>
+</html>
